@@ -1,0 +1,32 @@
+server:
+  port: 8899
+spring:
+  #jdbc配置
+  datasource:
+    name: aliyun
+    url: jdbc:mysql://47.104.236.197/aliyun?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: admin
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+#mybatis配置
+mybatis:
+  #映射文件路径
+  mapper-locations: classpath:mapper/*.xml
+  #对应实体类的路径
+  type-aliases-package: com.aliyun.aliyundemo.domain
+
+#开启shutdown endpoint
+#endpoints:
+#  shutdown:
+#    enabled: true
+#    sensitive: true
+management:
+  server:
+    servlet:
+      context-path: /api/aliyun
+  metrics:
+    export:
+      signalfx:
+        access-token: 123
+
+
