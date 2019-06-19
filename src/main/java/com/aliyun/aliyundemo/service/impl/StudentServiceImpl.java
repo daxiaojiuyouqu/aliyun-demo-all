@@ -21,7 +21,14 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public int create(Student record) {
-        return studentMapper.insert(record);
+        int row = this.studentMapper.insert(record);
+        if (row == 1) {
+            Long id = record.getId();
+            if (Objects.nonNull(id)) {
+                studentRedisCacheService.redisSet(id, record);
+            }
+        }
+        return row;
     }
 
     @Override

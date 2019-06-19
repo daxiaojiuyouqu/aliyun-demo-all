@@ -22,7 +22,7 @@
     delete from student
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.aliyun.aliyundemo.domain.Student">
+  <insert id="insert" parameterType="com.aliyun.aliyundemo.domain.Student" useGeneratedKeys="true" keyProperty="id">
     insert into student (id, num, name, 
       age, created_time, updated_time
       )
