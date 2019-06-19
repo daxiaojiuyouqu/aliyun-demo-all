@@ -1,5 +1,6 @@
 package com.aliyun.aliyundemo.service.impl;
 
+import com.aliyun.aliyundemo.cache.StudentRedisCacheService;
 import com.aliyun.aliyundemo.dao.StudentMapper;
 import com.aliyun.aliyundemo.domain.Student;
 import com.aliyun.aliyundemo.service.IStudentService;
@@ -7,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class StudentServiceImpl implements IStudentService {
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private StudentRedisCacheService studentRedisCacheService;
 
     @Override
     public int create(Student record) {
@@ -36,6 +41,12 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public Student getById(Long id) {
-        return this.studentMapper.selectByPrimaryKey(id);
+        Student student = this.studentRedisCacheService.redisGet(id);
+        if (Objects.nonNull(student)) {
+            return student;
+        }
+        student = this.studentMapper.selectByPrimaryKey(id);
+        this.studentRedisCacheService.redisSet(id, student);
+        return student;
     }
 }

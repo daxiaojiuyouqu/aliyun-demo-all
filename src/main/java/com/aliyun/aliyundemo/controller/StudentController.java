@@ -28,5 +28,11 @@ public class StudentController {
         return new ReplyResult<>(students);
     }
 
+    @RequestMapping(value = "api/aliyun/student/get")
+    public ReplyResult<Student> get(Long id) {
+        Student student = this.studentService.getById(id);
+        return new ReplyResult<>(student);
+    }
+
 
 }

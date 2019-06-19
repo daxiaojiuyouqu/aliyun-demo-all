@@ -1,9 +1,11 @@
 package com.aliyun.aliyundemo.dao;
 
 import com.aliyun.aliyundemo.domain.Student;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component("studentMapper")
 public interface StudentMapper {
     int deleteByPrimaryKey(Long id);
 
