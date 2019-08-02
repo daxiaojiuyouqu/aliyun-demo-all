@@ -1,6 +1,7 @@
 package com.aliyun.aliyundemo.service;
 
 import com.aliyun.aliyundemo.domain.Student;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface IStudentService {
     List<Student> list();
 
     Student getById(Long id);
+
+    PageInfo<Student> findByPage(Integer pageNo, Integer pageSize);
 }

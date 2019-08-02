@@ -1,8 +1,14 @@
 package com.aliyun.aliyundemo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Setter
+@Getter
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 5878608011944858817L;
@@ -15,55 +21,11 @@ public class Student implements Serializable {
 
     private Integer age;
 
+    @JsonFormat(pattern = "yyyy-MM-dd MM:mm:ss", timezone = "GTM+8")
     private Date createdTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd MM:mm:ss", timezone = "GTM+8")
     private Date updatedTime;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Date getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Date getUpdatedTime() {
-        return updatedTime;
-    }
-
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
-    }
 }

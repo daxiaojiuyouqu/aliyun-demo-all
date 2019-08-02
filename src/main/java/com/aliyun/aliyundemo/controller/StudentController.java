@@ -3,6 +3,7 @@ package com.aliyun.aliyundemo.controller;
 import com.aliyun.aliyundemo.common.ReplyResult;
 import com.aliyun.aliyundemo.domain.Student;
 import com.aliyun.aliyundemo.service.IStudentService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,5 +35,9 @@ public class StudentController {
         return new ReplyResult<>(student);
     }
 
+    @RequestMapping(value = "api/aliyun/student/fen-ye/list")
+    public PageInfo<Student> fenYe(int pageNo, int pageSize) {
+        return this.studentService.findByPage(pageNo, pageSize);
+    }
 
 }

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aliyun.aliyundemo.dao.StudentMapper">
-  <resultMap id="BaseResultMap" type="com.aliyun.aliyundemo.domain.Student">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="num" jdbcType="INTEGER" property="num" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.aliyun.aliyundemo.domain.Student">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="num" jdbcType="INTEGER" property="num"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, num, name, age, created_time, updated_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from student
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from student
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from student
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.aliyun.aliyundemo.domain.Student" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.aliyun.aliyundemo.domain.Student" useGeneratedKeys="true" keyProperty="id">
     insert into student (id, num, name, 
       age, created_time, updated_time
       )
@@ -30,71 +30,71 @@
       #{age,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.aliyun.aliyundemo.domain.Student">
-    insert into student
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="num != null">
-        num,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="age != null">
-        age,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-      <if test="updatedTime != null">
-        updated_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="num != null">
-        #{num,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedTime != null">
-        #{updatedTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.aliyun.aliyundemo.domain.Student">
-    update student
-    <set>
-      <if test="num != null">
-        num = #{num,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
-      </if>
-      <if test="createdTime != null">
-        created_time = #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedTime != null">
-        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.aliyun.aliyundemo.domain.Student">
+    <insert id="insertSelective" parameterType="com.aliyun.aliyundemo.domain.Student">
+        insert into student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.aliyun.aliyundemo.domain.Student">
+        update student
+        <set>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.aliyun.aliyundemo.domain.Student">
     update student
     set num = #{num,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -105,10 +105,10 @@
   </update>
 
 
-                                <!--以下方法为手动添加-->
-  <select id="list" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from student
-  </select>
+    <!--以下方法为手动添加-->
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from student order by age desc
+    </select>
 </mapper>
