@@ -7,6 +7,7 @@ import java.util.List;
 
 @Component("studentMapper")
 public interface StudentMapper {
+
     int deleteByPrimaryKey(Long id);
 
     int insert(Student record);
@@ -20,4 +21,6 @@ public interface StudentMapper {
     int updateByPrimaryKey(Student record);
 
     List<Student> list();
+
+    void deleteAll();
 }

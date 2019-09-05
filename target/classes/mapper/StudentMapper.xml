@@ -111,4 +111,10 @@
         <include refid="Base_Column_List"/>
         from student order by age desc
     </select>
+
+    <update id="deleteAll">
+      delete from student
+    </update>
+
+
 </mapper>
