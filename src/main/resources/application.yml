@@ -31,6 +31,10 @@ spring:
         min-idle: 0
     lettuce:
       shutdown-timeout: 5000ms
+  #mongoDB配置
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
 #mybatis配置
 mybatis:
   #映射文件路径
@@ -63,3 +67,5 @@ pagehelper:
 #security:
 #  basic:
 #    enabled: false
+
+
