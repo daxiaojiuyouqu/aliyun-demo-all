@@ -1,7 +1,7 @@
-package com.aliyun.aliyundemo.rabbitmq.service;
+package com.aliyun.aliyundemo.rabbitmq.chuxue.service.amqptemplate;
 
-import com.aliyun.aliyundemo.rabbitmq.config.RabbitMQConfig;
-import com.aliyun.aliyundemo.rabbitmq.model.QueueUser;
+import com.aliyun.aliyundemo.rabbitmq.chuxue.config.RabbitMQConfig;
+import com.aliyun.aliyundemo.rabbitmq.chuxue.model.QueueUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

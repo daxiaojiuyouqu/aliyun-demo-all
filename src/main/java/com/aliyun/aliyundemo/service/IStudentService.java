@@ -18,4 +18,10 @@ public interface IStudentService {
     Student getById(Long id);
 
     PageInfo<Student> findByPage(Integer pageNo, Integer pageSize);
+
+    List<Student> testTransaction(Student student);
+
+    void insertStudent(Student student);
+
+
 }

@@ -57,4 +57,14 @@ public class StudentController {
         this.studentGuavaCacheService.update(student);
     }
 
+    @PostMapping(value = "api/aliyun/student/test/transaction")
+    public ReplyResult<List<Student>> testTransaction(@RequestBody Student student) {
+        return new ReplyResult<>(this.studentService.testTransaction(student));
+    }
+
+    @PostMapping(value = "api/aliyun/student/test/transaction2")
+    public void testTransaction2(@RequestBody Student student) {
+        this.studentService.insertStudent(student);
+    }
+
 }

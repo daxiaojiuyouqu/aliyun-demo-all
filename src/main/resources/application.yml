@@ -1,5 +1,6 @@
 server:
   port: 8899
+
 spring:
   druid:
     druidClassName: com.mysql.cj.jdbc.Driver
@@ -41,12 +42,23 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual #采用手动应答
+        concurrency: 10 #并发消费者的初始化值
+        max-concurrency: 20 #并发消费者的最大值
+        prefetch: 5 #每个消费者每次监听时可拉取处理的消息数量
+    publisher-confirms: true #开启消息确认机制
+    publisher-returns: true  #支持消息发送失败返回队列
+    template:
+      mandatory: true #消息发送失败返回到队列中,需要配置 publisher-returns: true
 #mybatis配置
 mybatis:
   #映射文件路径
   mapper-locations: classpath:mapper/*.xml
   #对应实体类的路径
   type-aliases-package: com.aliyun.aliyundemo.domain
+
 
 #配置分页插件pagehelper
 pagehelper:
@@ -58,6 +70,21 @@ pagehelper:
 
 
 
+zookeeper:
+  address: localhost:2181
+  timeout: 4000
+
+mq:
+  env: local
+user:
+  order:
+    queue:
+      name: ${mq.env}.user.order.queue
+    exchange:
+      name: ${mq.env}.user.order.exchange
+    routing:
+      key:
+        name: ${mq.env}.user.order.routing.key
 
 
 

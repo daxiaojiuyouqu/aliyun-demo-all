@@ -1,4 +1,4 @@
-package com.aliyun.aliyundemo.rabbitmq.model;
+package com.aliyun.aliyundemo.rabbitmq.chuxue.model;
 
 import lombok.Getter;
 import lombok.Setter;

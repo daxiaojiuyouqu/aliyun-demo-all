@@ -6,13 +6,18 @@ import com.aliyun.aliyundemo.domain.Student;
 import com.aliyun.aliyundemo.service.IStudentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@Slf4j
 public class StudentServiceImpl implements IStudentService {
 
     @Autowired
@@ -20,6 +25,9 @@ public class StudentServiceImpl implements IStudentService {
 
     @Autowired
     private StudentRedisCacheService studentRedisCacheService;
+
+    @Autowired
+    private StudentTransactionService studentTransactionService;
 
     @Override
     public int create(Student record) {
@@ -65,4 +73,21 @@ public class StudentServiceImpl implements IStudentService {
         List<Student> list = this.studentMapper.list();
         return new PageInfo<>(list);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
+    @Override
+    public List<Student> testTransaction(Student student) {
+        this.studentTransactionService.insert(student);
+        List<Student> list = this.studentMapper.list();
+        log.info("学生列表:{}", new Gson().toJson(list));
+        return list;
+    }
+
+    @Transactional(rollbackFor = Throwable.class)
+    @Override
+    public void insertStudent(Student student) {
+        this.studentMapper.insert(student);
+    }
+
+
 }
